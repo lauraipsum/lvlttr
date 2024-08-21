@@ -1,73 +1,147 @@
 @import url('https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap');
 
+/* Estilos gerais */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Sedan", serif;
+  overflow: hidden; /* Evitar rolagem acidental */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.letter {
+  position: absolute;
+  top: 0; /* Ajuste para garantir visibilidade */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #8e9ef7;
+  overflow: auto; /* Ajustar para permitir rolagem se necessário */
+  transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform-origin: bottom;
+  z-index: 2;
+  opacity: 0;
+  font-size: 4vw; /* Ajuste tamanho da fonte */
+  padding: 5vw; /* Ajuste padding */
+  box-sizing: border-box;
+  text-align: justify;
+}
+
 .envelope {
-    position: relative;
-    width: 600px;
-    height: 400px;
-    margin: 50px auto;
-    cursor: pointer;
-    perspective: 1000px;
-    background: url('https://static.vecteezy.com/system/resources/previews/010/029/965/non_2x/love-letter-pattern-texture-with-text-effect-on-a-white-background-valentine-s-day-special-seamless-pattern-design-with-love-shapes-love-endless-pattern-decoration-for-bed-sheets-and-wallpapers-vector.jpg');
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.6s ease;
-  }
-  
-  .flap {
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    background: url('https://static.vecteezy.com/system/resources/previews/010/029/965/non_2x/love-letter-pattern-texture-with-text-effect-on-a-white-background-valentine-s-day-special-seamless-pattern-design-with-love-shapes-love-endless-pattern-decoration-for-bed-sheets-and-wallpapers-vector.jpg');
-    transform-origin: bottom;
-    transition: transform 0.8s ease;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  .body {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    height: 50%;
-    background: url('https://static.vecteezy.com/system/resources/previews/010/029/965/non_2x/love-letter-pattern-texture-with-text-effect-on-a-white-background-valentine-s-day-special-seamless-pattern-design-with-love-shapes-love-endless-pattern-decoration-for-bed-sheets-and-wallpapers-vector.jpg');
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    z-index: -1;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .letter {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: #fafafa;
-    overflow: hidden;
-    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform-origin: bottom;
-    z-index: -2;
-    opacity: 0;
-    font-family: "Sedan", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 20px;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: justify;
-  }
-  
-  .open .flap {
-    transform: rotateX(-180deg);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-  }
-  
-  .letter.fullSize {
-    top: 0%;
-    height: 100%;  /* Expand to full screen */
+  position: relative;
+  width: 80vw; /* Ajuste conforme necessário */
+  height: 50vw; /* Ajuste conforme necessário */
+  max-width: 600px; /* Limite máximo de largura */
+  max-height: 400px; /* Limite máximo de altura */
+  margin: 5vw auto; /* Margem em unidades relativas */
+  cursor: pointer;
+  perspective: 1000px;
+  z-index: 0;
+  background: url('pattern.png') no-repeat center center;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.6s ease;
+}
+
+.flap {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  z-index: 0;
+  background: url('pattern.png') no-repeat center center;
+  transform-origin: bottom;
+  transition: transform 0.8s ease;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.body {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 50%;
+  background: url('pattern.png') no-repeat center center;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  z-index: -1;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.open .flap {
+  transform: rotateX(-180deg);
+  box-shadow: 0 10px 20px rgba(255, 231, 231, 0.5);
+}
+
+.letter.fullSize {
+  top: 0%;
+  height: 100%; /* Expandir para toda a altura */
+  opacity: 1;
+  transform: scale(1); /* Ajustar se necessário */
+  z-index: 0;
+}
+
+.message {
+  position: absolute;
+  top: 10%; /* Ajuste conforme necessário */
+  left: 50%;
+  transform: translateX(-50%);
+  color: red;
+  font-size: 5vw; /* Ajuste tamanho da fonte */
+  font-weight: bold;
+  text-align: center;
+  animation: blink 1s infinite;
+  z-index: 3;
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
     opacity: 1;
-    z-index: -2;
-    transform: scale(1);  /* Scale up if necessary */
   }
-  
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .envelope {
+    width: 90vw; /* Reduzir a largura em telas menores */
+    height: 60vw; /* Reduzir a altura em telas menores */
+  }
+
+  .letter {
+    font-size: 5vw; /* Ajuste tamanho da fonte */
+    padding: 4vw; /* Ajuste padding */
+  }
+
+  .message {
+    font-size: 6vw; /* Ajuste tamanho da fonte */
+    top: 15%; /* Ajuste posição */
+  }
+}
+
+@media (max-width: 480px) {
+  .envelope {
+    width: 95vw; /* Reduzir a largura em telas muito pequenas */
+    height: 70vw; /* Reduzir a altura em telas muito pequenas */
+  }
+
+  .letter {
+    font-size: 6vw; /* Ajuste tamanho da fonte */
+    padding: 3vw; /* Ajuste padding */
+  }
+
+  .message {
+    font-size: 7vw; /* Ajuste tamanho da fonte */
+    top: 20%; /* Ajuste posição */
+  }
+}
